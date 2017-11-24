@@ -33,3 +33,6 @@ Plain javascript easing functions, 纯js缓动函数, 利用数学函数的坐�
 
         });
 ```
+
+## Easing 缓动函数图像参考
+[![easings.net](https://github.com/nelsonkuang/tween.js/blob/master/tween.jpg?raw=true)](http://easings.net)
