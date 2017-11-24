@@ -163,7 +163,7 @@
             c = 5; // 运动两个半左右周期
 
         if (t < 0.5) {
-            return -1 * Math.pow(a, 2 * b * (t - 1 + 0.5)) * Math.sin(2 * (t - 1.1 + 0.5) * c * Math.PI); // y =  -2^(20(x-0.5))*sin(2(x - 0.6) * 5 * 3.14)
+            return -0.5 * Math.pow(a, 2 * b * (t - 1 + 0.5)) * Math.sin(2 * (t - 1.1 + 0.5) * c * Math.PI); // y =  0.5(-2^(20(x-0.5))*sin(2(x - 0.6) * 5 * 3.14))
         }
 
         return Math.pow(a, -2 * b * (t - 0.5)) * Math.sin((-2 * (t - 0.5) - 4.1) * c * Math.PI) + 1; // y = 2^(-20(x-0.5))*sin((-2(x-0.5)-4.1) * 5 * π) + 1
