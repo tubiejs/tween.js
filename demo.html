@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Javascript自定义缓动函数easing</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <script src="http://www.iampua.com/pui/dist/js/pix2rem.min.js"></script>
+    <link href="http://www.iampua.com/pui/dist/css/base_2016_11.min.css" rel="stylesheet" />
+    <style>
+        body {
+            height: 100%;
+        }
+        h1{
+            text-align:center;
+            color:#000;
+            font-size:24px;
+            padding:20px;
+        }
+        .main {
+            min-height: 100%;
+            background-color: whitesmoke;
+        }
+
+        .box {
+            width: 320px;
+            height: 320px;
+        }
+        .box-sm {
+            width: 150px;
+            height: 150px;
+        }
+        .box-xl {
+            width: 600px;
+            height: 600px;
+        }
+        .box-full{
+            padding:20px 70px 20px 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .box-full:last-child{
+            border-bottom:none;
+        }
+        .title {
+            margin-bottom:20px;
+        }
+        .content{
+            height:50px;
+        }
+        .content img{
+            width:50px;
+            height:50px;
+            cursor:pointer;
+            border-radius:50%;
+        }
+    </style>
+</head>
+<body>
+    <article class="pageview">
+        <section class="main">
+            <h1>Javascript自定义缓动函数Easing</h1>
+            <div class="box-full">
+                <div class="title"><h2>linear</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="linear_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInSine</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInSine_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutSine</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutSine_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutSine</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutSine_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInQuad</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInQuad_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutQuad</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutQuad_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutQuad</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutQuad_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInCubic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInCubic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutCubic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutCubic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutCubic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutCubic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInQuart</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInQuart_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutQuart</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutQuart_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutQuart</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutQuart_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInQuint</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInQuint_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutQuint</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutQuint_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutQuint</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutQuint_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInExpo</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInExpo_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutExpo</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutExpo_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutExpo</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutExpo_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInCirc</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInCirc_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutCirc</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutCirc_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutCirc</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutCirc_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInBack</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInBack_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutBack</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutBack_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutBack</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutBack_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInElastic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInElastic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutElastic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutElastic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutElastic</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutElastic_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInBounce</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInBounce_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeOutBounce</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeOutBounce_ball" /></div>
+            </div>
+            <div class="box-full">
+                <div class="title"><h2>easeInOutBounce</h2></div>
+                <div class="content"><img src="http://dummyimage.com/50/AA8604/fff&text=Ball" id="easeInOutBounce_ball" /></div>
+            </div>
+
+        </section>
+
+
+    </article>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://www.iampua.com/pui/dist/js/tween.min.js"></script>
+    <script>
+        $(function () {
+            $('.content img').click(function () {
+                var This = $(this);
+                var s = This.parents('.content').width(),
+                    easing = This.attr('id').replace('_ball', ''),
+                    timeNow = 0;
+                // 运动
+                var move = function () {
+                    var f_t = tween[easing](timeNow) * s;
+                    if (timeNow <= 1) {
+                        This.css('webkitTransform', 'translate3d(' + f_t + 'px, 0, 0)');
+                        timeNow += 0.02; // 时间增加
+                        requestAnimationFrame(move);
+                    } else {
+                        This.css('webkitTransform', 'translate3d(' + s + 'px, 0, 0)');
+                    }
+                }
+                move();
+            });
+
+        });
+    </script>
+    <script>
+    (function () {
+        var _hmt = _hmt || [];
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?3f796b398b088d897a22e0e437ee603e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</body>
+</html>
+<script>
+</script>
