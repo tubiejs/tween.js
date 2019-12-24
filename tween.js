@@ -194,5 +194,19 @@
         return _t.easeOutBounce(t * 2 - 1) * 0.5 + 0.5;
     }
 
+    /*
+     * Bézier curve 三次贝塞尔曲线效果，这里 p0，p1，p2，p3 使用百分比用于表示 0 ~ 1 的位置
+     * reference from: https://www.zhihu.com/question/20192825/answer/26154120
+     * @param  {number} p0
+     * @param  {number} p1
+     * @param  {number} p2
+     * @param  {number} p3
+     * @param  {number} t
+     * @return {number}
+     */
+    _t.bezierCurve = function (p0, p1, p2, p3, t) {
+        return (1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t ** 2 * p2 + t ** 3 * p3; // B(t) = (1 - t)³ x p0 + 3 x (1 - t)² x t x p1 + 3 x (1 - t) x t² x p2 + t³ x p3
+    }
+
     return _t;
 }))
